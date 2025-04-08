@@ -9,7 +9,7 @@ public class StageData
     Vector3 scale;
     int prefabType;
 
-    public StageData(Vector3 position, Vector3 scale, int type)
+    public StageData(Vector3 position, Vector3 scale, int prefabType)
     {
         this.position = position;
         this.scale = scale;
@@ -21,14 +21,14 @@ public class StageData
     public int getPrefabType() { return this.prefabType; }
 }
 
-public class StageController : MonoBehaviour
+public class StageGenerator : MonoBehaviour
 {
     public GameObject cludePrefab;
     public GameObject flagPrefab;
 
     StageData[] stages = {
         new StageData(new Vector3(-1.55f, -5.1f, 0f), new Vector3(1.1f, 1f, 1f), 1),
-        new StageData(new Vector3(0f, -5.1f, 0f), new Vector3(11f, 1f, 1f), 1),
+        new StageData(new Vector3(0f, -5.1f, 0f), new Vector3(1.1f, 1f, 1f), 1),
         new StageData(new Vector3(1.55f, -5.1f, 0f), new Vector3(1.1f, 1f, 1f), 1),
 
         new StageData(new Vector3(-1.6f, -2.8f, 0f), new Vector3(1f, 1f, 1f), 1),
@@ -52,6 +52,7 @@ public class StageController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("StageGenerator Start");
         foreach(StageData stage in stages) {
             GameObject go;
             if (stage.getPrefabType() == 1)
